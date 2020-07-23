@@ -1,3 +1,8 @@
 <resources>
     <string name="app_name">trecox</string>
+
+    <string name="vp_title">Title</string>
+    <string name="vp_description">Description</string>
+    <string name="next">Next</string>
+    <string name="skip">Skip</string>
 </resources>

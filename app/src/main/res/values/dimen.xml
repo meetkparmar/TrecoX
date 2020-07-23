@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="vp_title_text_size">24sp</dimen>
+    <dimen name="vp_description_text_size">16sp</dimen>
+    <dimen name="default_margin">24dp</dimen>
+</resources>

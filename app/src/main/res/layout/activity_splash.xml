@@ -12,6 +12,7 @@
         android:fontFamily="@font/volkhov_bold"
         android:textSize="48sp"
         android:textStyle="bold"
+        android:textColor="@color/white"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"

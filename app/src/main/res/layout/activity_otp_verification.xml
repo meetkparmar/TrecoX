@@ -32,11 +32,35 @@
         android:paddingEnd="@dimen/margin_24"
         android:textColor="@color/black"
         android:textSize="@dimen/default_text_size"
-        app:layout_constraintBottom_toTopOf="@+id/btn_verify"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/num_txt"
+        app:layout_constraintTop_toBottomOf="@+id/tv_header"
         app:layout_constraintVertical_bias="0.0" />
+
+    <TextView
+        android:id="@+id/tv_remaining_seconds"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/margin_24"
+        android:text="@string/remaining_seconds"
+        android:textColor="@color/greyDark"
+        android:textSize="@dimen/default_text_size"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/et_otp" />
+
+    <TextView
+        android:id="@+id/num_txt"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/default_margin"
+        app:layout_constraintStart_toStartOf="parent"
+        android:text="60"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tv_remaining_seconds"
+        android:textSize="@dimen/counter_text_size"
+        android:textColor="@color/colorAccent"/>
 
     <Button
         android:id="@+id/btn_verify"
@@ -52,19 +76,5 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
-
-    <TextView
-        android:id="@+id/num_txt"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="@dimen/margin_24"
-        android:layout_marginTop="@dimen/margin_24"
-        android:text="TextView"
-        android:textColor="@color/greyDark"
-        android:textSize="10sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tv_header" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

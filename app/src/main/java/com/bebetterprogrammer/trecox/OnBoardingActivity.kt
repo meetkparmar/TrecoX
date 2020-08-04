@@ -4,9 +4,11 @@ import android.content.Intent
 import android.graphics.Color
 import android.os.Bundle
 import android.text.Html
+import android.util.Log
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.viewpager.widget.ViewPager.OnPageChangeListener
+import com.google.firebase.auth.FirebaseAuth
 import kotlinx.android.synthetic.main.activity_on_boarding.*
 
 class OnBoardingActivity : AppCompatActivity(), OnPageChangeListener {
@@ -18,6 +20,16 @@ class OnBoardingActivity : AppCompatActivity(), OnPageChangeListener {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_on_boarding)
+
+        FirebaseAuth.getInstance().currentUser?.let {
+            Log.i(
+                "OnBoardingActivity",
+                "User is already logged in with name - ${FirebaseAuth.getInstance().currentUser?.displayName}!"
+            )
+            val i = Intent(this, HomePageActivity::class.java)
+            startActivity(i)
+            finish()
+        }
 
         slideAdapter = SlideAdapter(this)
         view_page.adapter = slideAdapter

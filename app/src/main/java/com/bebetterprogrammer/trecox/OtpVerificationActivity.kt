@@ -104,7 +104,7 @@ class OtpVerificationActivity : AppCompatActivity() {
             } else if(num_txt.text == "Resend") {
                 val code = et_otp.text.toString()
                 verifyPhoneNumberWithCode(storedVerificationId, code)
-                num_txt.text = "OTP sent successfully!!!"
+                num_txt.text = "OTP sent successfully!!"
             }
         }
 

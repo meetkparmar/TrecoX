@@ -4,6 +4,7 @@ import android.content.Intent
 import android.os.Bundle
 import android.os.CountDownTimer
 import android.util.Log
+import android.view.View
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.google.firebase.FirebaseException
@@ -44,14 +45,13 @@ class OtpVerificationActivity : AppCompatActivity() {
         callbacks = object : PhoneAuthProvider.OnVerificationStateChangedCallbacks() {
             override fun onVerificationCompleted(credential: PhoneAuthCredential) {
                 Log.d(TAG, "onVerificationCompleted:$credential")
-                Toast.makeText(applicationContext, "completed", Toast.LENGTH_LONG).show()
                 verificationInProgress = false
                 signInWithPhoneAuthCredential(credential)
             }
 
             override fun onVerificationFailed(e: FirebaseException) {
                 Log.w(TAG, "onVerificationFailed", e)
-                Toast.makeText(applicationContext, e.toString(), Toast.LENGTH_LONG).show()
+                Toast.makeText(applicationContext, "Something want wrong! \nPlease check your Mobile number", Toast.LENGTH_LONG).show()
 
                 verificationInProgress = false
                 if (e is FirebaseAuthInvalidCredentialsException) {
@@ -75,6 +75,21 @@ class OtpVerificationActivity : AppCompatActivity() {
         }
         // [END phone_auth_callbacks]
 
+        verifyPhoneNumber()
+
+        num_txt.setOnClickListener {
+            if (num_txt.text == sec.toString()) {
+                val changeIntent = Intent(this,LoginActivity::class.java)
+                startActivity(changeIntent)
+                finish()
+            } else if(num_txt.text == "Resend") {
+                verifyPhoneNumber()
+            }
+        }
+
+    }
+
+    private fun verifyPhoneNumber(){
         PhoneAuthProvider.getInstance().verifyPhoneNumber(
             mobileNumber,           // Phone number to verify
             60,                     // Timeout duration
@@ -85,29 +100,18 @@ class OtpVerificationActivity : AppCompatActivity() {
 
         countDownTimer = object : CountDownTimer(30000, 1000) {
             override fun onFinish() {
+                tv_remaining_seconds.visibility = View.GONE
                 num_txt.text = "Resend"
             }
 
             override fun onTick(millisUntilFinished: Long) {
+                tv_remaining_seconds.visibility = View.VISIBLE
                 sec = (millisUntilFinished / 1000).toInt()
-                num_txt.text = "OTP Sent to " + mobileNumber + "\n Remaining seconds : " + sec + " Edit Num"
+                num_txt.text = sec.toString()
             }
 
         }
         countDownTimer.start()
-
-        num_txt.setOnClickListener {
-            if (num_txt.text == "OTP Sent to " + mobileNumber + "\n Remaining seconds : " + sec + " Edit Num") {
-                val changeIntent = Intent(this,LoginActivity::class.java)
-                startActivity(changeIntent)
-                finish()
-            } else if(num_txt.text == "Resend") {
-                val code = et_otp.text.toString()
-                verifyPhoneNumberWithCode(storedVerificationId, code)
-                num_txt.text = "OTP sent successfully!!"
-            }
-        }
-
     }
 
     companion object {
@@ -126,8 +130,6 @@ class OtpVerificationActivity : AppCompatActivity() {
             .addOnCompleteListener(this) { task ->
                 if (task.isSuccessful) {
                     Log.d(TAG, "signInWithCredential:success")
-                    val user = task.result?.user
-                    Toast.makeText(applicationContext, "Welcome $user", Toast.LENGTH_LONG).show()
 
                     val i = Intent(this, HomePageActivity::class.java)
                     startActivity(i)
@@ -135,7 +137,7 @@ class OtpVerificationActivity : AppCompatActivity() {
                 } else {
                     Log.w(TAG, "signInWithCredential:failure", task.exception)
                     if (task.exception is FirebaseAuthInvalidCredentialsException) {
-                        Toast.makeText(applicationContext, "Error", Toast.LENGTH_LONG).show()
+                        Toast.makeText(applicationContext, "Something want wrong!", Toast.LENGTH_LONG).show()
                     }
                 }
             }

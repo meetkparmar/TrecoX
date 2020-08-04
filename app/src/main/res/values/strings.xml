@@ -15,5 +15,6 @@
 
     <string name="verify">Verify</string>
     <string name="otp_text">Enter Your OTP</string>
+    <string name="remaining_seconds">Remaining seconds</string>
 
 </resources>

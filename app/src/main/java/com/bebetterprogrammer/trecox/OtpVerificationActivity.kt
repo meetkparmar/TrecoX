@@ -37,11 +37,6 @@ class OtpVerificationActivity : AppCompatActivity() {
 
         mobileNumber = intent.getStringExtra("mobileNumber")!!
 
-        btn_verify.setOnClickListener {
-            val code = et_otp.text.toString()
-            verifyPhoneNumberWithCode(storedVerificationId, code)
-        }
-
         callbacks = object : PhoneAuthProvider.OnVerificationStateChangedCallbacks() {
             override fun onVerificationCompleted(credential: PhoneAuthCredential) {
                 Log.d(TAG, "onVerificationCompleted:$credential")
@@ -51,7 +46,11 @@ class OtpVerificationActivity : AppCompatActivity() {
 
             override fun onVerificationFailed(e: FirebaseException) {
                 Log.w(TAG, "onVerificationFailed", e)
-                Toast.makeText(applicationContext, "Something want wrong! \nPlease check your Mobile number", Toast.LENGTH_LONG).show()
+                Toast.makeText(
+                    applicationContext,
+                    "Something went wrong! \nPlease check your Mobile number",
+                    Toast.LENGTH_LONG
+                ).show()
 
                 verificationInProgress = false
                 if (e is FirebaseAuthInvalidCredentialsException) {
@@ -79,20 +78,32 @@ class OtpVerificationActivity : AppCompatActivity() {
 
         num_txt.setOnClickListener {
             if (num_txt.text == sec.toString()) {
-                val changeIntent = Intent(this,LoginActivity::class.java)
+                val changeIntent = Intent(this, LoginActivity::class.java)
                 startActivity(changeIntent)
                 finish()
-            } else if(num_txt.text == "Resend") {
+            } else if (num_txt.text == "Resend") {
                 verifyPhoneNumber()
+                Toast.makeText(this, "Resend", Toast.LENGTH_LONG).show()
             }
         }
 
+        btn_verify.setOnClickListener {
+            val code = et_otp.text.toString()
+            if (et_otp.text.toString() == "") {
+                btn_verify.isEnabled = false
+            } else {
+                btn_verify.isEnabled = true
+                verifyPhoneNumberWithCode(storedVerificationId, code)
+            }
+        }
+
+
     }
 
-    private fun verifyPhoneNumber(){
+    private fun verifyPhoneNumber() {
         PhoneAuthProvider.getInstance().verifyPhoneNumber(
             mobileNumber,           // Phone number to verify
-            60,                     // Timeout duration
+            30,                     // Timeout duration
             TimeUnit.SECONDS,       // Unit of timeout
             this,                   // Activity (for callback binding)
             callbacks
@@ -137,7 +148,11 @@ class OtpVerificationActivity : AppCompatActivity() {
                 } else {
                     Log.w(TAG, "signInWithCredential:failure", task.exception)
                     if (task.exception is FirebaseAuthInvalidCredentialsException) {
-                        Toast.makeText(applicationContext, "Something want wrong!", Toast.LENGTH_LONG).show()
+                        Toast.makeText(
+                            applicationContext,
+                            "Something went wrong \n Please try again!",
+                            Toast.LENGTH_LONG
+                        ).show()
                     }
                 }
             }

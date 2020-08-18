@@ -17,4 +17,8 @@
     <string name="otp_text">Enter Your OTP</string>
     <string name="remaining_seconds">Remaining seconds</string>
 
+    <string name="title_home">Home</string>
+    <string name="title_order_list">Order List</string>
+    <string name="title_info">Info</string>
+
 </resources>

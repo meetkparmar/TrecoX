@@ -1,13 +1,11 @@
-package com.bebetterprogrammer.trecox
+package com.bebetterprogrammer.trecox.ui
 
 import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Handler
-import android.util.Log
-import com.google.firebase.auth.FirebaseAuth
-import com.google.firebase.auth.ktx.auth
-import com.google.firebase.ktx.Firebase
+import com.bebetterprogrammer.trecox.BuildConfig
+import com.bebetterprogrammer.trecox.R
 import kotlinx.android.synthetic.main.activity_splash.*
 
 class SplashActivity : AppCompatActivity() {

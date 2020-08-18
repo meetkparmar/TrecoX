@@ -1,4 +1,4 @@
-package com.bebetterprogrammer.trecox
+package com.bebetterprogrammer.trecox.ui
 
 import android.content.Intent
 import android.graphics.Color
@@ -8,6 +8,8 @@ import android.util.Log
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.viewpager.widget.ViewPager.OnPageChangeListener
+import com.bebetterprogrammer.trecox.R
+import com.bebetterprogrammer.trecox.SlideAdapter
 import com.google.firebase.auth.FirebaseAuth
 import kotlinx.android.synthetic.main.activity_on_boarding.*
 

@@ -12,13 +12,13 @@ public class DataBaseConnection {
     public static String classs = "com.mysql.jdbc.Driver"; //185.27.134.3
 
     public static String getName() {
-        String companyEmail = "hap";
+        String companyEmail = ".";
         try {
             Class.forName(classs);
             Connection connection = DriverManager.getConnection(url, user, password);
             Statement st = connection.createStatement();
             ResultSet rs = st.executeQuery("select * from company where company_name = 'AnalogX'");
-            companyEmail = rs.getString(3);
+            companyEmail = rs.getString(2);
             if (companyEmail == null) {
                 companyEmail = "qwe";
             }

@@ -8,6 +8,7 @@ import androidx.fragment.app.Fragment
 import com.bebetterprogrammer.trecox.R
 import com.bebetterprogrammer.trecox.networking.DataBaseConnection
 import kotlinx.android.synthetic.main.fragment_home.*
+import kotlinx.android.synthetic.main.fragment_home.view.*
 
 class HomeFragment: Fragment() {
 
@@ -16,7 +17,9 @@ class HomeFragment: Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        company_tv.text = DataBaseConnection.getName()
-        return inflater.inflate(R.layout.fragment_home, container, false)
+        val view = inflater.inflate(R.layout.fragment_home, container, false)
+        view.company_tv.text = DataBaseConnection.getName()
+
+        return view
     }
 }

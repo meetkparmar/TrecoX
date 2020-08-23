@@ -1,30 +1,70 @@
 package com.bebetterprogrammer.trecox.networking;
 
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.ResultSet;
-import java.sql.Statement;
+import android.content.Context;
+import android.os.AsyncTask;
 
-public class DataBaseConnection {
-    public static String user = "epiz_26523431";
-    public static String password = "um4i5ui1CnI";
-    public static String url = "jdbc:mysql://185.27.134.3/epiz_26523431_trecox";
-    public static String classs = "com.mysql.jdbc.Driver"; //185.27.134.3
+import org.apache.http.HttpResponse;
+import org.apache.http.client.HttpClient;
+import org.apache.http.client.methods.HttpGet;
+import org.apache.http.impl.client.DefaultHttpClient;
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
 
-    public static String getName() {
-        String companyEmail = ".";
+import java.io.BufferedReader;
+import java.io.InputStreamReader;
+
+import java.net.URI;
+
+
+public class DataBaseConnection extends AsyncTask<String, String, String> {
+
+
+    public static String res;
+
+    public void setRes(String res) {
+        DataBaseConnection.res = res;
+    }
+
+    @Override
+    protected void onPostExecute(String result) {
         try {
-            Class.forName(classs);
-            Connection connection = DriverManager.getConnection(url, user, password);
-            Statement st = connection.createStatement();
-            ResultSet rs = st.executeQuery("select * from company where company_name = 'AnalogX'");
-            companyEmail = rs.getString(2);
-            if (companyEmail == null) {
-                companyEmail = "qwe";
+            JSONObject jsonObject = new JSONObject(result);
+            int success = jsonObject.getInt("success");
+            if (success == 1) {
+                JSONArray company = jsonObject.getJSONArray("company");
+                JSONObject cmp = company.getJSONObject(0);
+                int id = cmp.getInt("id");
+                setRes(cmp.getString("company_name"));
             }
-        } catch (Exception e) {
-            System.out.println(e);
+        } catch (JSONException e) {
+            e.printStackTrace();
         }
-        return companyEmail;
+
+    }
+
+    @Override
+    protected String doInBackground(String... strings) {
+        String result1 = "";
+        String host = "http://trecox.epizy.com/toandroid.php";
+
+        try {
+            HttpClient httpClient = new DefaultHttpClient();
+            HttpGet request = new HttpGet();
+            request.setURI(new URI(host));
+            HttpResponse response = httpClient.execute(request);
+            BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(response.getEntity().getContent()));
+            StringBuilder stringBuffer = new StringBuilder("");
+            String line = "";
+            while ((line = bufferedReader.readLine()) != null) {
+                stringBuffer.append(line);
+            }
+            bufferedReader.close();
+            result1 = stringBuffer.toString();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        setRes("hap");
+        return result1;
     }
 }

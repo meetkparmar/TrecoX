@@ -17,7 +17,7 @@
     <LinearLayout
         android:id="@+id/bottom_layout"
         android:layout_width="match_parent"
-        android:layout_height="48dp"
+        android:layout_height="60dp"
         android:layout_margin="@dimen/margin_24"
         android:orientation="horizontal"
         app:layout_constraintBottom_toBottomOf="parent">
@@ -27,10 +27,7 @@
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
-            android:background="@drawable/layout_button"
-            android:focusable="true"
-            android:text="@string/skip"
-            android:textColor="@color/white" />
+            android:text="@string/skip" />
 
         <LinearLayout
             android:id="@+id/dot_layout"
@@ -45,11 +42,7 @@
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
-            android:background="@drawable/layout_button"
-            android:focusable="true"
-            android:text="@string/next"
-            android:textColor="@color/white"
-            android:textStyle="bold" />
+            android:text="@string/next" />
 
     </LinearLayout>
 

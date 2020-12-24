@@ -25,7 +25,7 @@ class LoginActivity : AppCompatActivity() {
             finish()
         }
         btn_next.setOnClickListener {
-            val mobileNumber = tv_country_code.text.toString() + et_mobile_number.text.toString()
+            val mobileNumber = "+91" + et_mobile_number.text.toString()
             if (mobileNumber.trim().isNotEmpty() && mobileNumber.length == 13) {
                 val intent = Intent(this, OtpVerificationActivity::class.java)
                     .putExtra("mobileNumber", mobileNumber)

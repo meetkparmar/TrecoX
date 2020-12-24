@@ -10,78 +10,47 @@
         android:id="@+id/tv_hello"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="@dimen/margin_24"
-        android:layout_marginTop="50dp"
+        android:layout_marginStart="@dimen/margin_16dp"
+        android:layout_marginTop="48dp"
         android:text="@string/hello_text"
-        android:textColor="@color/colorPrimary"
-        android:textSize="24sp"
-        android:textStyle="bold"
+        android:textAppearance="@style/Widget.App.TextAppearance.HeadLine3"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
         android:id="@+id/tv_sign_in"
+        style="@style/Widget.App.TextAppearance.Subtitle1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="@dimen/margin_24"
-        android:layout_marginTop="8dp"
+        android:layout_marginStart="@dimen/margin_16dp"
+        android:layout_marginTop="@dimen/margin_8dp"
         android:text="@string/sign_in_text"
-        android:textColor="@color/grey"
-        android:textSize="18sp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tv_hello" />
 
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/mobile_number_layout"
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/inputTextLayout1"
         android:layout_width="match_parent"
-        android:layout_height="60dp"
-        android:layout_margin="@dimen/default_margin"
-        android:background="@drawable/mobile_number_layout"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/margin_16dp"
+        android:hint="@string/mobile_number_hint"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tv_sign_in">
+        app:layout_constraintTop_toBottomOf="@id/tv_sign_in">
 
-        <TextView
-            android:id="@+id/tv_country_code"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="@dimen/margin_24"
-            android:text="@string/country_code"
-            android:textColor="@color/black"
-            android:textSize="@dimen/default_text_size"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-
-        <EditText
+        <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/et_mobile_number"
-            android:layout_width="0dp"
-            android:layout_height="0dp"
-            android:layout_marginStart="@dimen/margin_24"
-            android:layout_marginEnd="@dimen/margin_24"
-            android:background="@android:color/transparent"
-            android:hint="@string/mobile_number_hint"
-            android:inputType="number"
-            android:textColor="@color/black"
-            android:textSize="@dimen/default_text_size"
-            android:maxLength="10"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@id/tv_country_code"
-            app:layout_constraintTop_toTopOf="parent" />
-    </androidx.constraintlayout.widget.ConstraintLayout>
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:inputType="number"/>
+
+    </com.google.android.material.textfield.TextInputLayout>
 
     <Button
         android:id="@+id/btn_next"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="@color/colorPrimary"
-        android:clickable="true"
-        android:focusable="true"
+        android:layout_height="60dp"
+        android:layout_margin="@dimen/margin_16dp"
         android:text="@string/verify"
-        android:textColor="@color/white"
-        android:textSize="@dimen/default_button_text_size"
-        android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />

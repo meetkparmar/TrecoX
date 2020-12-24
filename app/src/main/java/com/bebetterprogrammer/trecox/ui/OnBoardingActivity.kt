@@ -42,6 +42,9 @@ class OnBoardingActivity : AppCompatActivity(), OnPageChangeListener {
             if (currentPage == 2) {
                 openActivity()
             } else {
+                if(currentPage == 1){
+                    btn_next.text = "Done"
+                }
                 view_page.currentItem = currentPage + 1
             }
         }

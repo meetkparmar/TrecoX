@@ -10,4 +10,19 @@
     <dimen name="default_margin">16dp</dimen>
     <dimen name="low_margin">8dp</dimen>
 
+    <dimen name="margin_4dp">4dp</dimen>
+    <dimen name="margin_8dp">8dp</dimen>
+    <dimen name="margin_16dp">16dp</dimen>
+    <dimen name="padding_4dp">4dp</dimen>
+    <dimen name="padding_8dp">8dp</dimen>
+    <dimen name="padding_16dp">16dp</dimen>
+
+    <dimen name="corner_radius_4dp">4dp</dimen>
+    <dimen name="corner_radius_8dp">8dp</dimen>
+    <dimen name="corner_radius_16dp">16dp</dimen>
+
+    <dimen name="elevations_2dp">2dp</dimen>
+    <dimen name="elevations_4dp">4dp</dimen>
+    <dimen name="elevations_8dp">8dp</dimen>
+
 </resources>

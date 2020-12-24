@@ -9,34 +9,29 @@
         android:id="@+id/tv_header"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="@dimen/margin_24"
-        android:layout_marginTop="@dimen/margin_24"
+        android:textAppearance="@style/Widget.App.TextAppearance.HeadLine6"
+        android:layout_marginStart="@dimen/margin_16dp"
+        android:layout_marginTop="@dimen/margin_16dp"
         android:text="@string/otp_text"
-        android:textColor="@color/greyDark"
-        android:textSize="18sp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"/>
 
-    <EditText
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/inputTextLayout1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/margin_16dp"
+        android:hint="@string/otp_text"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tv_header">
+
+    <com.google.android.material.textfield.TextInputEditText
         android:id="@+id/et_otp"
         android:layout_width="match_parent"
-        android:layout_height="60dp"
-        android:layout_margin="@dimen/default_margin"
-        android:layout_marginStart="@dimen/margin_24"
-        android:layout_marginTop="24dp"
-        android:layout_marginEnd="@dimen/margin_24"
-        android:background="@drawable/mobile_number_layout"
-        android:hint="@string/otp_text"
-        android:inputType="number"
-        android:paddingStart="@dimen/margin_24"
-        android:paddingEnd="@dimen/margin_24"
-        android:textColor="@color/black"
-        android:textSize="@dimen/default_text_size"
-        android:maxLength="6"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tv_header"
-        app:layout_constraintVertical_bias="0.0" />
+        android:layout_height="wrap_content"
+        android:inputType="number"/>
+
+    </com.google.android.material.textfield.TextInputLayout>
 
     <TextView
         android:id="@+id/tv_remaining_seconds"
@@ -44,11 +39,10 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/margin_24"
         android:text="@string/remaining_seconds"
-        android:textColor="@color/greyDark"
-        android:textSize="@dimen/default_text_size"
+        android:textAppearance="@style/Widget.App.TextAppearance.Caption"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/et_otp" />
+        app:layout_constraintTop_toBottomOf="@+id/inputTextLayout1" />
 
     <TextView
         android:id="@+id/num_txt"
@@ -57,23 +51,17 @@
         android:layout_margin="@dimen/default_margin"
         app:layout_constraintStart_toStartOf="parent"
         android:text="60"
-        android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@id/tv_remaining_seconds"
-        android:textSize="@dimen/counter_text_size"
-        android:textColor="@color/colorAccent"/>
+        android:textColor="@color/colorAccent"
+        android:textAppearance="@style/Widget.App.TextAppearance.HeadLine6"/>
 
     <Button
         android:id="@+id/btn_verify"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="@color/colorPrimary"
-        android:clickable="true"
-        android:focusable="true"
+        android:layout_height="60dp"
+        android:layout_margin="@dimen/margin_16dp"
         android:text="@string/verify"
-        android:textColor="@color/white"
-        android:textSize="@dimen/default_button_text_size"
-        android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
